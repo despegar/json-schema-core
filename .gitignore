@@ -1,7 +1,11 @@
 *.iml
 target
 .idea
+.classpath
+.project
+.settings/
 build
 .gradle
 out
 .nb-gradle*
+/bin/

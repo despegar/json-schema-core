@@ -82,6 +82,8 @@ public final class LoadingConfigurationBuilder
      */
     boolean enableCache = true;
 
+    long cacheMaxSize = -1;
+    
     /**
      * Dereferencing mode
      *
@@ -133,6 +135,7 @@ public final class LoadingConfigurationBuilder
         preloadedSchemas = Maps.newHashMap(cfg.preloadedSchemas);
         parserFeatures = EnumSet.copyOf(cfg.parserFeatures);
         enableCache = cfg.enableCache;
+        cacheMaxSize = cfg.cacheMaxSize;
     }
 
     /**
@@ -143,11 +146,23 @@ public final class LoadingConfigurationBuilder
      * @param enableCache if loaded schemas have to be cached
      * @return this
      */
-    public LoadingConfigurationBuilder setEnableCache(final boolean enableCache)
+    public LoadingConfigurationBuilder enableCache(final boolean enableCache)
     {
         this.enableCache = enableCache;
         return this;
     }
+    
+    /**
+     * Set cache max size
+     * 
+     * @param cacheMaxSize
+     * @return this
+     */
+    public LoadingConfigurationBuilder cacheMaxSize(long cacheMaxSize) 
+    {
+		this.cacheMaxSize = cacheMaxSize;
+        return this;
+	}
     
     /**
      * Add a new URI downloader

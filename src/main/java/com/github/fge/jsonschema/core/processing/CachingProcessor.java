@@ -93,11 +93,25 @@ public final class CachingProcessor<IN extends MessageProvider, OUT extends Mess
     public CachingProcessor(final Processor<IN, OUT> processor,
         final Equivalence<IN> equivalence)
     {
+    	this(processor, equivalence, -1);
+    }
+
+    /**
+     * Main constructor
+     *
+     * @param processor the processor
+     * @param equivalence an equivalence to use for cache keys
+     * @param cacheMaximumSize max size of the cache
+     * @throws NullPointerException processor or equivalence are null
+     */
+    public CachingProcessor(final Processor<IN, OUT> processor,
+        final Equivalence<IN> equivalence, long cacheMaximumSize)
+    {
         BUNDLE.checkNotNull(processor, "processing.nullProcessor");
         BUNDLE.checkNotNull(equivalence, "processing.nullEquivalence");
         this.processor = processor;
         this.equivalence = equivalence;
-        cache = CacheBuilder.newBuilder().build(loader());
+        cache = CacheBuilder.newBuilder().maximumSize(cacheMaximumSize).build(loader());
     }
 
     @Override

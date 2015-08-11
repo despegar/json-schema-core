@@ -102,7 +102,7 @@ public final class SchemaLoader
         preloadedSchemas = ImmutableMap.copyOf(cfg.getPreloadedSchemas());
 
         final CacheBuilder<Object, Object> cacheBuilder = cfg.getEnableCache()
-            ? CacheBuilder.newBuilder()
+            ? CacheBuilder.newBuilder().maximumSize(cfg.getCacheMaxSize())
             : CacheBuilder.from(CacheBuilderSpec.disableCaching());
         
         cache = cacheBuilder.build(new CacheLoader<URI, JsonNode>()

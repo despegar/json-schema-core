@@ -96,6 +96,9 @@ public final class LoadingConfiguration
      */
     final boolean enableCache;
 
+    
+    final long cacheMaxSize;
+    
     /**
      * Dereferencing mode
      *
@@ -166,6 +169,7 @@ public final class LoadingConfiguration
         parserFeatures = EnumSet.copyOf(builder.parserFeatures);
         reader = buildReader();
         enableCache = builder.enableCache;
+        cacheMaxSize = builder.cacheMaxSize;
     }
 
     /**
@@ -239,10 +243,22 @@ public final class LoadingConfiguration
      * 
      * @return if the cache has to be enabled
      */
-    public boolean getEnableCache() {
+    public boolean getEnableCache() 
+    {
         return enableCache;
     }
 
+    
+    /**
+     * Return the maximum amount of elements that the cache can hold.
+     * 
+     * @return the max size
+     */
+    public long getCacheMaxSize() 
+    {
+		return cacheMaxSize;
+	}
+    
     /**
      * Return a thawed version of this loading configuration
      *
